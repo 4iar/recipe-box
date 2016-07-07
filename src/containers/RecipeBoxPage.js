@@ -10,9 +10,7 @@ class RecipeBoxPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      recipes: [
-        {name: 'sausage', ingredients: 'dog'}
-      ]
+      recipes: []
     };
   }
 
@@ -37,7 +35,7 @@ class RecipeBoxPage extends React.Component {
       recipes: this.state.recipes.concat(newRecipe)
     });
   }
-  
+
   render() {
     return (
       <div>
