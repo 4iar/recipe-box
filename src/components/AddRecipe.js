@@ -77,7 +77,9 @@ export default class AddRecipe extends React.Component {
                 />
               </FormGroup>
             </form>
-            <Button onClick={this.handleSubmit.bind(this)}>Add</Button>
+            <Modal.Footer>
+              <Button bsStyle="primary" onClick={this.handleSubmit.bind(this)}>Add</Button>
+            </Modal.Footer>
           </Modal.Body>
         </Modal>
       </div>

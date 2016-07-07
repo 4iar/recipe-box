@@ -76,10 +76,12 @@ export default class EditRecipe extends React.Component {
                   type="text"
                   value={this.state.ingredients}
                   onChange={this.handleIngredientsChange.bind(this)}
-                /> 
+                />
               </FormGroup>
             </form>
-            <Button onClick={this.handleSubmit.bind(this)}>Save</Button>
+            <Modal.Footer>
+              <Button bsStyle="primary" onClick={this.handleSubmit.bind(this)}>Save</Button>
+            </Modal.Footer>
           </Modal.Body>
         </Modal>
       </div>
