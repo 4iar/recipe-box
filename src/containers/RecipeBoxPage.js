@@ -3,15 +3,15 @@ import reactMixin from 'react-mixin';
 import LocalStorageMixin from 'react-localstorage';
 
 import Recipes from '../components/Recipes';
+import AddRecipe from '../components/AddRecipe';
 
 
 class RecipeBoxPage extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       recipes: [
-        {name: 'pizza', ingredients: 'pepperoni, cheese'},
-        {name: 'hotdog', ingredients: 'bun, sausage'}
+        {name: 'sausage', ingredients: 'dog'}
       ]
     };
   }
@@ -32,6 +32,12 @@ class RecipeBoxPage extends React.Component {
     });
   }
 
+  addRecipe(newRecipe) {
+    this.setState({
+      recipes: this.state.recipes.concat(newRecipe)
+    });
+  }
+  
   render() {
     return (
       <div>
@@ -40,6 +46,7 @@ class RecipeBoxPage extends React.Component {
           editRecipe={this.editRecipe.bind(this)}
           deleteRecipe={this.deleteRecipe.bind(this)}
         />
+        <AddRecipe addRecipe={this.addRecipe.bind(this)} />
       </div>
     );
   }
