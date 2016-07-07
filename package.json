@@ -27,6 +27,8 @@
     "object-assign": "4.1.0",
     "react": "15.2.0",
     "react-dom": "15.2.0",
+    "react-localstorage": "0.3.0",
+    "react-mixin": "3.0.5",
     "react-redux": "4.4.5",
     "react-router": "2.5.2",
     "react-router-redux": "4.0.5",

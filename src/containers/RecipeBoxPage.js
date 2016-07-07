@@ -1,8 +1,11 @@
 import React from 'react';
+import reactMixin from 'react-mixin';
+import LocalStorageMixin from 'react-localstorage';
 
 import Recipes from '../components/Recipes';
 
-export default class RecipeBoxPage extends React.Component {
+
+class RecipeBoxPage extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -33,3 +36,6 @@ export default class RecipeBoxPage extends React.Component {
     );
   }
 }
+
+reactMixin(RecipeBoxPage.prototype, LocalStorageMixin);
+export default RecipeBoxPage;
