@@ -15,13 +15,17 @@ class RecipeBoxPage extends React.Component {
       ]
     };
   }
-  
+
   editRecipe(index) {
     console.log("called edit recipe on: " + this.state.recipes[index].name);
   }
-  
+
   deleteRecipe(index) {
-    console.log("called delete recipe on: " + this.state.recipes[index].name);
+    let newRecipes = this.state.recipes.slice();
+    newRecipes.splice(index, 1);
+    this.setState({
+      recipes: newRecipes
+    });
   }
 
   render() {
