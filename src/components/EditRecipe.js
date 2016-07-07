@@ -1,5 +1,6 @@
 import React from 'react';
-import {Button, Modal, Row, Input} from 'react-materialize';
+import {Button, Modal, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
+
 
 
 export default class EditRecipe extends React.Component {
@@ -7,8 +8,17 @@ export default class EditRecipe extends React.Component {
     super(props);
     this.state = {
       name: this.props.recipe.name,
-      ingredients: this.props.recipe.ingredients
+      ingredients: this.props.recipe.ingredients,
+      showModal: false
     }
+  }
+  close() {
+    this.setState({ showModal: false });
+  }
+
+  open() {
+    console.log("calling setState");
+    this.setState({ showModal: true });
   }
 
   handleNameChange (e) {
@@ -32,21 +42,47 @@ export default class EditRecipe extends React.Component {
     };
 
     this.props.editRecipe(this.props.index, newRecipe);
+    this.close();
   }
 
   render() {
     return (
-      <Modal
-        header='Edit recipe'
-        trigger={
-    <Button waves='light'>Edit</Button>
-  }>
-        <Row>
-          <Input s={12} label="Name" validate defaultValue={this.props.recipe.name} onChange={this.handleNameChange.bind(this)} />
-          <Input s={12} label="Ingredients" validate defaultValue={this.props.recipe.ingredients} onChange={this.handleIngredientsChange.bind(this)} />
-        </Row>
-        <Button onClick={this.handleSubmit.bind(this)}>Apply</Button>
-      </Modal>
+      <div>
+        <Button
+          bsStyle="primary"
+          bsSize="large"
+          onClick={this.open.bind(this)}
+        >
+          Edit
+        </Button>
+
+        <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Edit recipe</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form>
+              <FormGroup
+                controlId="editRecipe"
+              >
+                <ControlLabel>Name</ControlLabel>
+                <FormControl
+                  type="text"
+                  value={this.state.name}
+                  onChange={this.handleNameChange.bind(this)}
+                />
+               <ControlLabel>Ingredients</ControlLabel>
+                <FormControl
+                  type="text"
+                  value={this.state.ingredients}
+                  onChange={this.handleIngredientsChange.bind(this)}
+                /> 
+              </FormGroup>
+            </form>
+            <Button onClick={this.handleSubmit.bind(this)}>Save</Button>
+          </Modal.Body>
+        </Modal>
+      </div>
     );
   }
 }
