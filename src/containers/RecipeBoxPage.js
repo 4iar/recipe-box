@@ -4,6 +4,7 @@ import LocalStorageMixin from 'react-localstorage';
 
 import Recipes from '../components/Recipes';
 import AddRecipe from '../components/AddRecipe';
+import Header from '../components/Header';
 
 
 class RecipeBoxPage extends React.Component {
@@ -39,6 +40,7 @@ class RecipeBoxPage extends React.Component {
   render() {
     return (
       <div>
+        <Header addRecipe={this.addRecipe.bind(this)} recipes={this.state.recipes} />
         <Recipes
           recipes={this.state.recipes}
           editRecipe={this.editRecipe.bind(this)}

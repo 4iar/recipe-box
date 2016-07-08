@@ -8,16 +8,18 @@ export default class AddRecipe extends React.Component {
     this.state = {
       name: '',
       ingredients: '',
-      showModal: false
+      showModal: this.props.showModal
     };
   }
 
   close() {
-    this.setState({ showModal: false });
+    this.props.close();
   }
 
-  open() {
-    this.setState({ showModal: true });
+  componentWillReceiveProps(newProps) {
+    if (newProps.showModal !== this.state.showModal) {
+      this.setState({ showModal: newProps.showModal});
+    }
   }
 
   handleNameChange (e) {
@@ -46,14 +48,6 @@ export default class AddRecipe extends React.Component {
   render() {
     return (
       <div>
-        <Button
-          bsStyle="primary"
-          bsSize="large"
-          onClick={this.open.bind(this)}
-        >
-         Add recipe
-        </Button>
-
         <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
           <Modal.Header closeButton>
             <Modal.Title>Add recipe</Modal.Title>

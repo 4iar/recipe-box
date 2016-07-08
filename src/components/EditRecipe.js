@@ -2,23 +2,25 @@ import React from 'react';
 import {Button, Modal, FormGroup, ControlLabel, FormControl} from 'react-bootstrap';
 
 
-
 export default class EditRecipe extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: this.props.recipe.name,
       ingredients: this.props.recipe.ingredients,
-      showModal: false
+      showModal: this.props.showModal 
     }
   }
+  
+  componentWillReceiveProps(newProps) {
+    if (newProps.showModal !== this.state.showModal) {
+      this.setState({ showModal: newProps.showModal});
+    }
+  }
+ 
   close() {
     this.setState({ showModal: false });
-  }
-
-  open() {
-    console.log("calling setState");
-    this.setState({ showModal: true });
+    this.props.close();
   }
 
   handleNameChange (e) {
@@ -48,14 +50,6 @@ export default class EditRecipe extends React.Component {
   render() {
     return (
       <div>
-        <Button
-          bsStyle="primary"
-          bsSize="large"
-          onClick={this.open.bind(this)}
-        >
-          Edit
-        </Button>
-
         <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
           <Modal.Header closeButton>
             <Modal.Title>Edit recipe</Modal.Title>
